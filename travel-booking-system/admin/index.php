@@ -147,15 +147,18 @@ $tab = $_GET['tab'] ?? 'overview';
                 <td class="fs-sm text-muted" style="font-family:monospace"><?= $b['transaction_id'] ?></td>
                 <td><span class="badge badge-<?= $b['status'] ?>"><?= ucfirst($b['status']) ?></span></td>
                 <td>
-                  <form method="POST" style="display:flex; gap:0.3rem">
-                    <input type="hidden" name="booking_id" value="<?= $b['id'] ?>">
-                    <select name="status" class="form-control" style="padding:0.3rem 0.5rem; font-size:0.8rem; width:auto">
-                      <option value="confirmed" <?= $b['status']==='confirmed'?'selected':'' ?>>Confirmed</option>
-                      <option value="pending" <?= $b['status']==='pending'?'selected':'' ?>>Pending</option>
-                      <option value="cancelled" <?= $b['status']==='cancelled'?'selected':'' ?>>Cancelled</option>
-                    </select>
-                    <button type="submit" name="update_status" class="btn btn-outline btn-sm">✓</button>
-                  </form>
+                  <div style="display:flex; gap:0.3rem; flex-direction:column">
+                    <form method="POST" style="display:flex; gap:0.3rem">
+                      <input type="hidden" name="booking_id" value="<?= $b['id'] ?>">
+                      <select name="status" class="form-control" style="padding:0.3rem 0.5rem; font-size:0.8rem; width:auto">
+                        <option value="confirmed" <?= $b['status']==='confirmed'?'selected':'' ?>>Confirmed</option>
+                        <option value="pending" <?= $b['status']==='pending'?'selected':'' ?>>Pending</option>
+                        <option value="cancelled" <?= $b['status']==='cancelled'?'selected':'' ?>>Cancelled</option>
+                      </select>
+                      <button type="submit" name="update_status" class="btn btn-outline btn-sm">✓</button>
+                    </form>
+                    <a href="../receipt.php?id=<?= $b['id'] ?>" class="btn btn-outline btn-sm" style="font-size:0.75rem">⬇ PDF</a>
+                  </div>
                 </td>
               </tr>
               <?php endforeach; ?>
