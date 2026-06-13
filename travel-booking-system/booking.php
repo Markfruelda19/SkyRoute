@@ -120,8 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="summary-row"><span>Check-out</span><span><?= $_POST['check_out'] ?></span></div>
           <?php endif; ?>
         </div>
-        <div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem">
-          <a href="dashboard.php" class="btn btn-primary">View My Bookings</a>
+        <div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem; flex-wrap:wrap">
+          <a href="receipt.php?id=<?= $success ?>" class="btn btn-primary">⬇ Download Receipt (PDF)</a>
+          <a href="dashboard.php" class="btn btn-outline">View My Bookings</a>
           <a href="index.php" class="btn btn-outline">Book More</a>
         </div>
       </div>
