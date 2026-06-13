@@ -138,14 +138,15 @@ $tab = $_GET['tab'] ?? 'bookings';
                   <td class="text-gold fw-600"><?= formatPrice($b['total_price']) ?></td>
                   <td><span class="badge badge-<?= $b['status'] ?>"><?= ucfirst($b['status']) ?></span></td>
                   <td>
-                    <?php if ($b['status'] === 'confirmed'): ?>
-                    <form method="POST" style="display:inline" onsubmit="return confirm('Cancel this booking?')">
-                      <input type="hidden" name="booking_id" value="<?= $b['id'] ?>">
-                      <button type="submit" name="cancel_booking" class="btn btn-danger btn-sm">Cancel</button>
-                    </form>
-                    <?php else: ?>
-                      <span class="text-muted fs-sm">—</span>
-                    <?php endif; ?>
+                    <div style="display:flex; gap:0.4rem; flex-wrap:wrap">
+                      <a href="receipt.php?id=<?= $b['id'] ?>" class="btn btn-outline btn-sm" title="Download PDF Receipt">⬇ PDF</a>
+                      <?php if ($b['status'] === 'confirmed'): ?>
+                      <form method="POST" style="display:inline" onsubmit="return confirm('Cancel this booking?')">
+                        <input type="hidden" name="booking_id" value="<?= $b['id'] ?>">
+                        <button type="submit" name="cancel_booking" class="btn btn-danger btn-sm">Cancel</button>
+                      </form>
+                      <?php endif; ?>
+                    </div>
                   </td>
                 </tr>
                 <?php endforeach; ?>
