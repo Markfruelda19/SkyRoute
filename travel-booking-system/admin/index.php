@@ -56,6 +56,7 @@ $tab = $_GET['tab'] ?? 'overview';
     <div class="sidebar-brand"><div class="brand">⚙ Admin</div></div>
     <nav class="sidebar-menu">
       <a href="?tab=overview" class="<?= $tab==='overview'?'active':'' ?>"><span class="menu-icon">📊</span> Overview</a>
+      <a href="analytics.php"><span class="menu-icon">📈</span> Analytics</a>
       <a href="?tab=bookings" class="<?= $tab==='bookings'?'active':'' ?>"><span class="menu-icon">📋</span> All Bookings</a>
       <a href="?tab=users" class="<?= $tab==='users'?'active':'' ?>"><span class="menu-icon">👥</span> Users</a>
       <a href="?tab=flights" class="<?= $tab==='flights'?'active':'' ?>"><span class="menu-icon">✈</span> Flights</a>
