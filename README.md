@@ -136,7 +136,7 @@ This project was created as a portfolio project to showcase:
 * Online Payments
 * Email Confirmation
 * PDF Booking Receipt (DONE✅)
-* Booking Analytics Dashboard
+* Booking Analytics Dashboard (DONE✅)
 * Dynamic Pricing System
 
 ---
