@@ -7,7 +7,29 @@ $user_id = $_SESSION['user_id'];
 // Handle cancel
 if (isset($_POST['cancel_booking'])) {
     $bid = (int)$_POST['booking_id'];
+
+    // Fetch booking + item info before cancelling (for email)
+    $brow = $conn->query(
+        "SELECT b.*, u.name AS user_name, u.email AS user_email,
+         f.origin, f.destination,
+         h.hotel_name
+         FROM bookings b
+         JOIN users u ON b.user_id = u.id
+         LEFT JOIN flights f ON b.booking_type='flight' AND b.item_id=f.id
+         LEFT JOIN hotels  h ON b.booking_type='hotel'  AND b.item_id=h.id
+         WHERE b.id=$bid AND b.user_id=$user_id"
+    )->fetch_assoc();
+
     $conn->query("UPDATE bookings SET status='cancelled' WHERE id=$bid AND user_id=$user_id");
+
+    // Send cancellation email silently
+    if ($brow) {
+        require_once 'includes/mailer.php';
+        SkyMailer::sendCancellation($brow, [
+            'name'  => $brow['user_name'],
+            'email' => $brow['user_email'],
+        ]);
+    }
 }
 
 // Handle profile update
