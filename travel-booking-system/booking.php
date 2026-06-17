@@ -59,6 +59,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $success = $booking_id;
+
+        // ── Send booking confirmation email ──────────────────
+        require_once __DIR__ . '/includes/mailer.php';
+        $user = getCurrentUser();
+        $booking_data = array_merge($item, [
+            'id'             => $booking_id,
+            'booking_type'   => $type,
+            'item_id'        => $id,
+            'guests'         => $guests,
+            'total_price'    => $total,
+            'check_in'       => $check_in ?: null,
+            'check_out'      => $check_out ?: null,
+            'transaction_id' => $txn_id,
+            'status'         => 'confirmed',
+        ]);
+        SkyMailer::sendBookingConfirmation($booking_data, $user);
+        // Email sends silently — failure doesn't block the booking
     } else {
         $error = "Booking failed. Please try again.";
     }
