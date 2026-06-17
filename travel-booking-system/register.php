@@ -35,6 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("sss", $name, $email, $hashed);
             if ($stmt->execute()) {
                 $success = 'Account created! <a href="login.php">Sign in now →</a>';
+
+                // ── Send welcome email ───────────────────────
+                require_once 'includes/mailer.php';
+                SkyMailer::sendWelcome(['name' => $name, 'email' => $email]);
             } else {
                 $error = 'Registration failed. Please try again.';
             }
