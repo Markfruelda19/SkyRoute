@@ -134,7 +134,7 @@ This project was created as a portfolio project to showcase:
 
 * Real API Integration
 * Online Payments
-* Email Confirmation
+* Email Confirmation (DONE✅)
 * PDF Booking Receipt (DONE✅)
 * Booking Analytics Dashboard (DONE✅)
 * Dynamic Pricing System
