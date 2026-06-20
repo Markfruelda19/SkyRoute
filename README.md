@@ -143,4 +143,4 @@ This project was created as a portfolio project to showcase:
 
 ## 👨‍💻 Author
 
-Developed by **mark mark**
+Developed by Mark Fruelda
